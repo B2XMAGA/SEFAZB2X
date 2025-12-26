@@ -49,24 +49,30 @@ const URL_WEBHOOK_INTER = 'https://api.apisimples.com.br/v1/webhook/pix_inter.ph
 //5c09700f-235f-30c7-8f7c-f11630cad8b8
 //9a1bec84-4234-4290-91d1-68a76a6c45c8
 
-const VIEW_CIP = '<td colspan="2" >
-    <div class="titulo">Uso do banco</div>
-    <div class="conteudo"><?php echo $uso_banco ?></div>
-</td>';
+const VIEW_CIP = '
+    
+
+Uso do banco
+
+
+    
+';
 
 
 /**
  * DADOS DE ACESSO DSN
  */
 const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
+
 /**
  * USUÁRIO DO BANCO DE DADOS
  */
 const USER = 'b2x_sefaz';
-const PASS = '@Pl68267713210';  // A senha que você definiu no campo "Normal User Password"/**
+
+/**
  * SENHA DO BANCO DE DADOS
  */
-const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
+const PASS = '@Pl68267713210';
 
 
 function url(string $uri = null): string {
