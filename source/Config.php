@@ -58,15 +58,16 @@ const VIEW_CIP = '<td colspan="2" >
 /**
  * DADOS DE ACESSO DSN
  */
-const DSN = 'mysql:host=72.d6;port=33d20;dbname=db_difesto';
+const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
 /**
  * USUÁRIO DO BANCO DE DADOS
  */
-const USER = 'user_mandesto';
+const USER = 'b2x_sefaz';
 /**
  * SENHA DO BANCO DE DADOS
  */
-const PASS = '55d7o';
+const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
+
 
 function url(string $uri = null): string {
     if ($uri) {
