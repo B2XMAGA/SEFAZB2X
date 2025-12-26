@@ -1,0 +1,2 @@
+<?php
+echo OPENSSL_VERSION_TEXT . PHP_EOL;

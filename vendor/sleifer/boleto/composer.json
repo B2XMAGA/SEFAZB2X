@@ -1,0 +1,28 @@
+{
+    "name": "sleifer/boleto",
+    "description": "Gerar código de barras de boleto ou arrecadação",
+    "keywords": [
+        "bar code",
+        "código de barras boleto",
+        "código de barras arrecadação"
+    ],
+    "homepage": "https://github.com/ismaelsleifer/boleto",
+    "type": "php",
+    "license": "BSD-3-Clause",
+    "version": "1.0.0",
+    "authors": [{
+        "name": "Ismael Sleifer",
+        "email": "ismaelsleifer@gmail.com",
+        "homepage": "http://www.sleifer.com.br",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=5.4.0",
+        "picqer/php-barcode-generator": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "sleifer\\boleto\\": ""
+        }
+    }
+}

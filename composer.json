@@ -1,0 +1,37 @@
+{
+  "name": "apisimples/api",
+  "description": "API INTEGRAÇÃO PIX E BOLETOS",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marques Junior",
+      "email": "contato@integraphp.com",
+      "role": "Developer",
+      "homepage": "https://www.integraphp.com"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "source/Config.php",
+      "source/Helpers.php"
+    ]
+  },
+  "require": {
+    "coffeecode/router": "1.0.*",
+    "opis/database": "^4.0",
+    "firebase/php-jwt": "^6.3",
+    "sleifer/boleto": "dev-master",
+    "mpdf/mpdf": "v8.0.4",
+    "spipu/html2pdf": "v4.6.1",
+    "nfephp-org/sped-nfe": "v5.0.127",
+    "nfephp-org/sped-da": "v1.1.5",
+    "ext-curl": "*"
+  }
+}
