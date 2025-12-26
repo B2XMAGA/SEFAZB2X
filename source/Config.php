@@ -65,14 +65,14 @@ Uso do banco
 const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
 
 /**
- * USUÁRIO DO BANCO DE DADOS
+ * USUÁRIO DO BANCO DE DADOS (usando root/mariadb para ter permissões completas)
  */
-const USER = 'b2x_sefaz';
+const USER = 'mariadb';
 
 /**
- * SENHA DO BANCO DE DADOS
+ * SENHA DO BANCO DE DADOS (Root Password do Coolify)
  */
-const PASS = '@Pl68267713210';
+const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
 
 
 function url(string $uri = null): string {
