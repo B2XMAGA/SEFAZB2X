@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Habilitar mod_rewrite para .htaccess funcionar
-RUN a]2enmod rewrite
+RUN a2enmod rewrite
 
 # Configurações PHP para NFePHP
 RUN echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/custom.ini \
