@@ -10,7 +10,7 @@ ob_start();
 // AUTOLOAD E CONFIGURAÇÕES
 // ============================================
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/source/Config.php";  // ← LINHA CRÍTICA QUE ESTAVA FALTANDO!
+require_once __DIR__ . "/source/Config.php";  // ← ALTERADO: require para require_once
 
 use CoffeeCode\Router\Router;
 
