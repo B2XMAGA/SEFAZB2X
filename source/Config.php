@@ -63,7 +63,7 @@ const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
  * USUÁRIO DO BANCO DE DADOS
  */
 const USER = 'b2x_sefaz';
-/**
+const PASS = '@Pl68267713210';  // A senha que você definiu no campo "Normal User Password"/**
  * SENHA DO BANCO DE DADOS
  */
 const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
