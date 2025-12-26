@@ -48,9 +48,14 @@ const DSN = 'mysql:host=mariadb;port=3306;dbname=b2x_sefaz';
 const USER = 'b2x_sefaz';
 const PASS = '@Pl68267713210';
 
-function url(string $uri = null): string {
-    if ($uri) {
-        return URL_BASE . "/{$uri}";
+/**
+ * FUNÇÃO URL - Protegida contra redeclaração
+ */
+if (!function_exists('url')) {
+    function url(string $uri = null): string {
+        if ($uri) {
+            return URL_BASE . "/{$uri}";
+        }
+        return URL_BASE;
     }
-    return URL_BASE;
 }
