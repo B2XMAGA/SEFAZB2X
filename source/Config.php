@@ -33,7 +33,7 @@ const URL_WEBHOOK_SANTANDER = "https://webhook.sic-4b6b-4ffc-9c41-3bc920c8952d";
 const SITE = [
     "name" => "ADMINISTRADOR DO SISTEMA DE ECOMMERCE",
     "desc" => "",
-    "domain" => "integraphp.com",
+    "domain" => "sefaz.etiquetasb2x.cloud",
     "locale" => "pt-br",
     "root" => URL_BASE
 ];
