@@ -60,19 +60,22 @@ Uso do banco
 
 
 /**
- * DADOS DE ACESSO DSN
+ * DADOS DE ACESSO DSN - CORRIGIDO
+ * Host alterado para 'mariadb' (nome do serviço no Docker/Coolify)
  */
-const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
+const DSN = 'mysql:host=mariadb;port=3306;dbname=b2x_sefaz';
 
 /**
- * USUÁRIO DO BANCO DE DADOS (usando root/mariadb para ter permissões completas)
+ * USUÁRIO DO BANCO DE DADOS
+ * Usando o usuário b2x_sefaz criado automaticamente pelo MariaDB
  */
-const USER = 'mariadb';
+const USER = 'b2x_sefaz';
 
 /**
- * SENHA DO BANCO DE DADOS (Root Password do Coolify)
+ * SENHA DO BANCO DE DADOS
+ * Senha do usuário b2x_sefaz definida nas variáveis de ambiente do Coolify
  */
-const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
+const PASS = '@Pl68267713210';
 
 
 function url(string $uri = null): string {
