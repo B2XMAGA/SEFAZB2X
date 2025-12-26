@@ -1,5 +1,18 @@
 <?php
 
+<?php
+// DEBUG TEMPORÁRIO - REMOVER DEPOIS
+require __DIR__ . '/source/Config.php';
+header('Content-Type: application/json');
+echo json_encode([
+    'URL_BASE' => URL_BASE,
+    'SITE_domain' => SITE['domain'],
+    'HTTP_HOST' => $_SERVER['HTTP_HOST'] ?? 'não definido',
+    'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? 'não definido',
+    'SERVER_NAME' => $_SERVER['SERVER_NAME'] ?? 'não definido'
+]);
+exit;
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
