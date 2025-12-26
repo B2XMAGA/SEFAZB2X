@@ -5,7 +5,7 @@
  */
 
 
-const URL_BASE = "https://fisds.app";
+const URL_BASE = "https://sefaz.etiquetasb2x.cloud";
 //const URL_BASE = "http://localhost:8080/newproject/apisimples";
 
 const JWT_KEY = "D98@75@89";
