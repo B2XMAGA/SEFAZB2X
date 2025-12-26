@@ -1,6 +1,4 @@
 <?php
-
-<?php
 // DEBUG TEMPORÁRIO - REMOVER DEPOIS
 require __DIR__ . '/source/Config.php';
 header('Content-Type: application/json');
