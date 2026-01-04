@@ -1,4 +1,5 @@
 <?php
+echo 'al';
 $host = 'a8484c4s4cgoskk0g8scsk08';
 $port = 3306;
 $db   = 'b2x_sefaz';
