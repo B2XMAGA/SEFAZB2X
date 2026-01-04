@@ -1,15 +1,15 @@
 <?php
 echo OPENSSL_VERSION_TEXT . PHP_EOL;
 
-echo 'deploy-001';
+echo 'deploy-002';
 
 
-$host = 'mariadb'; // nome do service
+
+$host = 'a8484c4s4cgoskk0g8scsk08';
 $port = 3306;
-
-$db   = getenv('MARIADB_DATABASE');
-$user = getenv('MARIADB_USER');
-$pass = getenv('MARIADB_PASSWORD');
+$db   = 'default';
+$user = 'mariadb';
+$pass = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
