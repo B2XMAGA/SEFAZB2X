@@ -1,7 +1,7 @@
 <?php
 $get = addslashes($_GET['n']);
 $novo = $get + 1;
-//echo "<meta HTTP-EQUIV='refresh' CONTENT='2;URL=dfeSearch.php?n=$novo'>";
+echo "<meta HTTP-EQUIV='refresh' CONTENT='2;URL=dfeSearch.php?n=$novo'>";
 date_default_timezone_set('America/Sao_Paulo');
 ini_set('display_errors', 'On');
 ini_set('error_reporting', 'E_ALL');
