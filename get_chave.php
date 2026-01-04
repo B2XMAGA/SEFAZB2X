@@ -16,490 +16,495 @@ $sql = <<<SQL
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for account
--- ----------------------------
-DROP TABLE IF EXISTS `account`;
-CREATE TABLE `account`  (
-  `account_id` int NOT NULL AUTO_INCREMENT,
-  `account_ide` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_id_company` int NULL DEFAULT NULL,
-  `account_ide_client` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_code_bank` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_key_pix` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_client_id` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `account_dev_key` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_client_secret` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `account_trash` int NULL DEFAULT NULL,
-  `account_status` int NULL DEFAULT NULL,
-  `account_certificate` blob NULL,
-  `account_password` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_certificate_key` blob NULL,
-  `account_pluggy_ide_item` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_pluggy_ide_account` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_agency` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `account_conta` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`account_id`) USING BTREE,
-  INDEX `idx_account_ide_id`(`account_ide`, `account_ide_client`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `eventos`;
+CREATE TABLE `eventos`  (
+  `eventos_id` int NOT NULL AUTO_INCREMENT,
+  `eventos_id_client` varchar(35) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_chave` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_code_evento` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_desc_evento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_data` datetime NULL DEFAULT NULL,
+  `eventos_prot` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_file` longblob NULL,
+  `eventos_ide` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `eventos_status_s3` int NULL DEFAULT NULL,
+  PRIMARY KEY (`eventos_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 159 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of account
+-- Records of eventos
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for chave
+-- Table structure for finance
 -- ----------------------------
-DROP TABLE IF EXISTS `chave`;
-CREATE TABLE `chave`  (
-  `chave_id` int NOT NULL AUTO_INCREMENT,
-  `chave_id_company` int NULL DEFAULT NULL,
-  `chave_ide` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `chave_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `chave_data_hora` datetime NULL DEFAULT NULL,
-  `chave_status` int NULL DEFAULT NULL,
-  `chave_data_hora_final` datetime NULL DEFAULT NULL,
-  `chave_xml` blob NULL,
-  `chave_ide_client` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`chave_id`) USING BTREE
+DROP TABLE IF EXISTS `finance`;
+CREATE TABLE `finance`  (
+  `finance_id` int NOT NULL AUTO_INCREMENT,
+  `finance_id_company` int NULL DEFAULT NULL,
+  `finance_ide` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_reference` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_ide_wallet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_type_pagador` int NULL DEFAULT NULL,
+  `finance_doc_pagador` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_name_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_address_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_number_pagador` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_district_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_complement_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_city_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_state_pagador` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_zip_pagador` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_telefone_pagador` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_email_pagador` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_our_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_date_due` date NULL DEFAULT NULL,
+  `finance_value` double(15, 2) NULL DEFAULT NULL,
+  `finance_date_payment` date NULL DEFAULT NULL,
+  `finance_value_payment` double(15, 2) NULL DEFAULT NULL,
+  `finance_status` int NULL DEFAULT NULL,
+  `finance_trash` int NULL DEFAULT NULL,
+  `finance_status_webservice` int NULL DEFAULT NULL,
+  `finance_barcode` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `finance_line_dig` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `finance_date_release` date NULL DEFAULT NULL,
+  `finance_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_payload_hybrid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_txtId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_antecipado` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_antecipado_valor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_antecipado_data` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_ra` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_codigo_solicitacao` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_data_credito` date NULL DEFAULT NULL,
+  `finance_valor_multa` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `finance_valor_juros` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`finance_id`) USING BTREE,
+  INDEX `idx_finance_company`(`finance_id_company` ASC, `finance_trash` ASC) USING BTREE,
+  INDEX `idx_finance_wallet`(`finance_ide_wallet` ASC) USING BTREE,
+  INDEX `idx_finance_company_trash_id`(`finance_id_company` ASC, `finance_trash` ASC, `finance_id` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of finance
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for food_delivery
+-- ----------------------------
+DROP TABLE IF EXISTS `food_delivery`;
+CREATE TABLE `food_delivery`  (
+  `food_delivery_id` int NOT NULL AUTO_INCREMENT,
+  `food_delivery_ide` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `food_delivery_id_entrega` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `food_delivery_status` int NULL DEFAULT NULL,
+  `food_delivery_uuid` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `food_delivery_data` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`food_delivery_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of chave
+-- Records of food_delivery
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for check
+-- Table structure for hub_delivery
 -- ----------------------------
-DROP TABLE IF EXISTS `check`;
-CREATE TABLE `check`  (
-  `check_id` int NOT NULL AUTO_INCREMENT,
-  `check_id_company` int NULL DEFAULT NULL,
-  `check_ide` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_data_hora` datetime NULL DEFAULT NULL,
-  `check_status` int NULL DEFAULT NULL,
-  PRIMARY KEY (`check_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of check
--- ----------------------------
-
--- ----------------------------
--- Table structure for check_pix
--- ----------------------------
-DROP TABLE IF EXISTS `check_pix`;
-CREATE TABLE `check_pix`  (
-  `check_pix_id` int NOT NULL AUTO_INCREMENT,
-  `check_pix_id_check` int NULL DEFAULT NULL,
-  `check_pix_tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_chave` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_codigo_banco` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_nome_banco` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_nome_titular` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_doc_titular` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_agencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_agencia_digito` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_conta` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_conta_digito` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `check_pix_status` int NULL DEFAULT NULL,
-  `check_pix_datetime` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`check_pix_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of check_pix
--- ----------------------------
-
--- ----------------------------
--- Table structure for client
--- ----------------------------
-DROP TABLE IF EXISTS `client`;
-CREATE TABLE `client`  (
-  `client_id` int NOT NULL AUTO_INCREMENT,
-  `client_ide` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_id_company` int NULL DEFAULT NULL,
-  `client_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_fantasy` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_doc` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_ie` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_im` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_place` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_number` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_district` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_zip` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_code_city` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_city` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_state` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_address_complement` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_phone` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_fixed` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_whats` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_status` int NULL DEFAULT NULL,
-  `client_dfe_certificate` blob NULL,
-  `client_dfe_password_certificate` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_dfe_use` int NULL DEFAULT NULL,
-  `client_dfe_ult_nsu` int NULL DEFAULT NULL,
-  `client_dfe_date_consult` datetime NULL DEFAULT NULL,
-  `client_cnae` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_crt` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_csc` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_cscid` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_dfe_ult_event_code` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_dfe_ult_event_desc` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_dfe_ult_event_datetime` datetime NULL DEFAULT NULL,
-  `client_type` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_status_certificado` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_validade_certificado` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_forcar_download` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_status_comunicacao` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_status_comunicacao_texto` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `client_status_comunicacao_data` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`client_id`) USING BTREE,
-  INDEX `idx_client_ide`(`client_ide`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of client
--- ----------------------------
-
--- ----------------------------
--- Table structure for company
--- ----------------------------
-DROP TABLE IF EXISTS `company`;
-CREATE TABLE `company`  (
-  `company_id` int NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_status` int NULL DEFAULT NULL,
-  `company_client_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_client_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_token` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `company_iat_token` bigint NULL DEFAULT NULL,
-  `company_exp_token` bigint NULL DEFAULT NULL,
-  `company_cartao_credito_status` int NULL DEFAULT NULL,
-  `company_cartao_credito_ambiente` int NULL DEFAULT NULL,
-  `company_cartao_credito_taxa` double NULL DEFAULT NULL,
-  `company_id_wallet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `company_token_asaas` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  PRIMARY KEY (`company_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of company
--- ----------------------------
-INSERT INTO `company` VALUES (1, 'Marques Junior', 'junioralphasistemas@gmail.com', '123456', 0, 'e10adc3949ba59abbe56e057f20f8asd', '8d969edddcad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'a9add53c8ecc9544c4b7484678aa5a1f', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjY2MDI4MTQsImVtYWlsIjoianVuaW9yYWxwaGFzaXN0ZW1hc0BnbWFpbC5jb20iLCJuYmYiOjE3NjY2MDI4MTQsImV4cCI6MTc2NjY4OTIxNCwia2V5IjoiYTlhZGQ1M2M4ZWNjOTU0NGM0Yjc0ODQ2NzhhYTVhMWYifQ.w6I9V15ZEanf1-9zWLBUag0UeobNizfKWcixDbYhg4g', 1766602814, 1766689214, 1, 1, 2, NULL, '$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwMDkwMzg6OiRhYWNoXzIzZTVlMjcxLWE4ZjktNDEwMS1hOGE2LWE0NjVhNTBhOTJmMA==');
-
--- ----------------------------
--- Table structure for consulta_sped
--- ----------------------------
-DROP TABLE IF EXISTS `consulta_sped`;
-CREATE TABLE `consulta_sped`  (
-  `consulta_sped_id` int NOT NULL AUTO_INCREMENT,
-  `consulta_sped_id_empresa` int NULL DEFAULT NULL,
-  `consulta_sped_ide` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `consulta_sped_tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `consulta_sped_data_hora` datetime NULL DEFAULT NULL,
-  `consulta_sped_status` int NULL DEFAULT NULL,
-  `consulta_sped_data_hora_final` datetime NULL DEFAULT NULL,
-  `consulta_sped_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `consulta_sped_certificado` longblob NULL,
-  `consulta_sped_senha` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `consulta_sped_data_inicial` date NULL DEFAULT NULL,
-  `consulta_sped_data_final` date NULL DEFAULT NULL,
-  PRIMARY KEY (`consulta_sped_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of consulta_sped
--- ----------------------------
-
--- ----------------------------
--- Table structure for contato
--- ----------------------------
-DROP TABLE IF EXISTS `contato`;
-CREATE TABLE `contato`  (
-  `contato_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contato_id_tipo_contato` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_id_empresa` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_tipo_cliente` int NULL DEFAULT 0,
-  `contato_tipo_fornecedor` int NULL DEFAULT 0,
-  `contato_tipo_transportador` int NULL DEFAULT 0,
-  `contato_cliente_final` int NULL DEFAULT 0,
-  `contato_nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_doc` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_nome_fantasia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_nome_representante` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_telefone` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_email` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_endereco_cep` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_logradouro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_numero` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_complemento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_bairro` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_uf` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_cidade` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_ibge` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_cep` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_logradouro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_numero` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_complemento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_bairro` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_uf` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_cidade` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_cidade_ibge` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_doc` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_ie` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_endereco_entrega_email` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_endereco_entrega_telefone` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_indicador_ie` int NULL DEFAULT 0,
-  `contato_ie` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_ie_sub_trib` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_im` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_suframa` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_data_nascimento` date NULL DEFAULT NULL,
-  `contato_palavras_chave` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_data_comemorativa` date NULL DEFAULT NULL,
-  `contato_descricao_data` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_base_legal` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `contato_obs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `contato_lixeira` int NULL DEFAULT 0,
-  `contato_status` int NULL DEFAULT 0,
-  PRIMARY KEY (`contato_id`) USING BTREE,
-  INDEX `idx_contato_empresa`(`contato_id_empresa` ASC) USING BTREE,
-  INDEX `idx_contato_tipo`(`contato_id_tipo_contato` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of contato
--- ----------------------------
-
--- ----------------------------
--- Table structure for debug
--- ----------------------------
-DROP TABLE IF EXISTS `debug`;
-CREATE TABLE `debug`  (
-  `debug_id` int NOT NULL AUTO_INCREMENT,
-  `debug_body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `debug_header` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `debug_end` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `debug_id_company` int NULL DEFAULT NULL,
-  `debug_date_hora` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`debug_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 844847 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of debug
--- ----------------------------
-
--- ----------------------------
--- Table structure for delivery
--- ----------------------------
-DROP TABLE IF EXISTS `delivery`;
-CREATE TABLE `delivery`  (
-  `delivery_id` int NOT NULL AUTO_INCREMENT,
-  `delivery_id_company` int NULL DEFAULT NULL,
-  `delivery_ide_hub_delivery` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_ide` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_code` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_name_cliente` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_date_time` datetime NULL DEFAULT NULL,
-  `delivery_status` int NULL DEFAULT NULL,
-  `delivery_subtotal` double(15, 2) NULL DEFAULT NULL,
-  `delivery_forma_pagamento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_desconto` double(15, 2) NULL DEFAULT NULL,
-  `delivery_total` double(15, 2) NULL DEFAULT NULL,
-  `delivery_trash` int NULL DEFAULT NULL,
-  `delivery_frete` double(15, 2) NULL DEFAULT NULL,
-  `delivery_cpf_cliente` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_endereco_rota` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_endereco_complemento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_endereco_cidade_uf` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_endereco_cep` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_endereco_bairro` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_troco` double(15, 2) NULL DEFAULT NULL,
-  `delivery_troco_para` double(15, 2) NULL DEFAULT NULL,
-  `delivery_taxa_conveniencia` double(15, 2) NULL DEFAULT NULL,
-  `delivery_data_hora_captura` datetime NULL DEFAULT NULL,
-  `delivery_codigo_entrega` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_obs` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `delivery_data_itens` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_tipo_pedido` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_telefone` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_tem_itens` int NULL DEFAULT NULL,
-  PRIMARY KEY (`delivery_id`) USING BTREE
+DROP TABLE IF EXISTS `hub_delivery`;
+CREATE TABLE `hub_delivery`  (
+  `hub_delivery_id` int NOT NULL AUTO_INCREMENT,
+  `hub_delivery_id_company` int NULL DEFAULT NULL,
+  `hub_delivery_ide_client` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hub_delivery_ide` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hub_delivery_dev` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hub_delivery_clientid` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hub_delivery_secretid` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hub_delivery_status` int NULL DEFAULT NULL,
+  `hub_delivery_trash` int NULL DEFAULT NULL,
+  `hub_delivery_auth` int NULL DEFAULT NULL,
+  `hub_delivery_senha_mail` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`hub_delivery_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of delivery
+-- Records of hub_delivery
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for delivery_data
+-- Table structure for impressora
 -- ----------------------------
-DROP TABLE IF EXISTS `delivery_data`;
-CREATE TABLE `delivery_data`  (
-  `delivery_data_id` int NOT NULL AUTO_INCREMENT,
-  `delivery_data_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `delivery_data_hora_pedido` datetime NULL DEFAULT NULL,
-  `delivery_data_hora_aceite` datetime NULL DEFAULT NULL,
-  `delivery_data_hora_captura` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`delivery_data_id`) USING BTREE
+DROP TABLE IF EXISTS `impressora`;
+CREATE TABLE `impressora`  (
+  `impressora_id` int NOT NULL AUTO_INCREMENT,
+  `impressora_id_comprany` int NULL DEFAULT NULL,
+  `impressora_ide` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_marca` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_modelo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_dim_cima` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_dim_baixo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_dim_direita` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_dim_esquerda` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `impressora_status` int NULL DEFAULT NULL,
+  `impressora_trash` int NULL DEFAULT NULL,
+  PRIMARY KEY (`impressora_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of delivery_data
+-- Records of impressora
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for delivery_itens
+-- Table structure for log
 -- ----------------------------
-DROP TABLE IF EXISTS `delivery_itens`;
-CREATE TABLE `delivery_itens`  (
-  `delivery_itens_id` int NOT NULL AUTO_INCREMENT,
-  `delivery_itens_id_delivery` int NULL DEFAULT NULL,
-  `delivery_itens_id_produto` int NULL DEFAULT NULL,
-  `delivery_itens_descricao` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_itens_qtd` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `delivery_itens_valor_unitario` double(15, 2) NULL DEFAULT NULL,
-  `delivery_itens_valor_total` double(15, 2) NULL DEFAULT NULL,
-  PRIMARY KEY (`delivery_itens_id`) USING BTREE
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE `log`  (
+  `log_id` int NOT NULL AUTO_INCREMENT,
+  `log_request` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `log_files` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `log_post` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  PRIMARY KEY (`log_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for lote
+-- ----------------------------
+DROP TABLE IF EXISTS `lote`;
+CREATE TABLE `lote`  (
+  `lote_id` int NOT NULL AUTO_INCREMENT,
+  `lote_ide` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lote_ide_client` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lote_status` int NULL DEFAULT NULL,
+  `lote_certificate` blob NULL,
+  `lote_certificate_password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lote_date_init` datetime NULL DEFAULT NULL,
+  `lote_date_finish` datetime NULL DEFAULT NULL,
+  `lote_file` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lote_type` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`lote_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of delivery_itens
+-- Records of lote
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for dfe
+-- Table structure for lote_boleto
 -- ----------------------------
-DROP TABLE IF EXISTS `dfe`;
-CREATE TABLE `dfe`  (
-  `dfe_id` int NOT NULL AUTO_INCREMENT,
-  `dfe_ide_client` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `dfe_nsu` int NULL DEFAULT NULL,
-  `dfe_doc` longblob NULL,
-  `dfe_status` int NULL DEFAULT NULL,
-  `dfe_schema` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `dfe_url_s3` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `dfe_md5` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`dfe_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3326265 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+DROP TABLE IF EXISTS `lote_boleto`;
+CREATE TABLE `lote_boleto`  (
+  `lote_boleto_id` int NOT NULL AUTO_INCREMENT,
+  `lote_boleto_id_company` int NULL DEFAULT NULL,
+  `lote_boleto_ide` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `lote_boleto_data_hora` datetime NULL DEFAULT NULL,
+  `lote_boleto_status` int NULL DEFAULT NULL,
+  `lote_boleto_trash` int NULL DEFAULT NULL,
+  `lote_boleto_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`lote_boleto_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of dfe
--- ----------------------------
-
--- ----------------------------
--- Table structure for dfe_hours
--- ----------------------------
-DROP TABLE IF EXISTS `dfe_hours`;
-CREATE TABLE `dfe_hours`  (
-  `dfe_hours_id` int NOT NULL AUTO_INCREMENT,
-  `dfe_hours_ide_client` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `dfe_hours_key` varchar(2) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`dfe_hours_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5005 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of dfe_hours
+-- Records of lote_boleto
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for dfe_migrate
+-- Table structure for lote_boleto_ret
 -- ----------------------------
-DROP TABLE IF EXISTS `dfe_migrate`;
-CREATE TABLE `dfe_migrate`  (
-  `dfe_id` int NOT NULL AUTO_INCREMENT,
-  `dfe_ide_client` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `dfe_nsu` int NULL DEFAULT NULL,
-  `dfe_doc` longblob NULL,
-  `dfe_status` int NULL DEFAULT NULL,
-  `dfe_schema` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`dfe_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3283267 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+DROP TABLE IF EXISTS `lote_boleto_ret`;
+CREATE TABLE `lote_boleto_ret`  (
+  `lote_boleto_ret_id` int NOT NULL AUTO_INCREMENT,
+  `lote_boleto_ret_id_lote_boleto` int NULL DEFAULT NULL,
+  `lote_boleto_ret_linha_digitavel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `lote_boleto_ret_status` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `lote_boleto_ret_data_consulta` datetime NULL DEFAULT NULL,
+  `lote_boleto_ret_data_retorno` datetime NULL DEFAULT NULL,
+  `lote_boleto_ret_valor` double(15, 2) NULL DEFAULT NULL,
+  `lote_boleto_ret_data_vencimento` date NULL DEFAULT NULL,
+  PRIMARY KEY (`lote_boleto_ret_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of dfe_migrate
--- ----------------------------
-
--- ----------------------------
--- Table structure for doc
--- ----------------------------
-DROP TABLE IF EXISTS `doc`;
-CREATE TABLE `doc`  (
-  `doc_id` int NOT NULL AUTO_INCREMENT,
-  `doc_id_client` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_mod` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_code` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_nat_op` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_serie` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_num` int NULL DEFAULT NULL,
-  `doc_date_emi` datetime NULL DEFAULT NULL,
-  `doc_date_sai` datetime NULL DEFAULT NULL,
-  `doc_emit_documento` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_emit_nome` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_emit_fantasia` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_emit_ie` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_dest_documento` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_dest_nome` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_dest_ie` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_valor` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_trib` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_base_icms` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_icms` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_frete` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_seguro` double(15, 2) NULL DEFAULT 0.00,
-  `doc_valor_desconto` double(15, 2) NULL DEFAULT 0.00,
-  `doc_uf_inicio` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_uf_final` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_status` int NULL DEFAULT NULL,
-  `doc_status_download` int NULL DEFAULT NULL,
-  `doc_status_manifestacao` int NULL DEFAULT NULL,
-  `doc_file` longblob NULL,
-  `doc_chave` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_tipo` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_status_s3` int NULL DEFAULT NULL,
-  `doc_ide` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`doc_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 36498 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of doc
+-- Records of lote_boleto_ret
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for doc_res
+-- Table structure for lote_item
 -- ----------------------------
-DROP TABLE IF EXISTS `doc_res`;
-CREATE TABLE `doc_res`  (
-  `doc_res_id` int NOT NULL AUTO_INCREMENT,
-  `doc_res_id_client` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_chave` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_doc` varchar(35) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_ie` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_date_emi` datetime NULL DEFAULT NULL,
-  `doc_res_amount` double(15, 2) NULL DEFAULT NULL,
-  `doc_res_dig` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_date_recbto` datetime NULL DEFAULT NULL,
-  `doc_res_num_prot` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_status` int NULL DEFAULT NULL,
-  `doc_res_file` blob NULL,
-  `doc_res_ide` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `doc_res_status_s3` int NULL DEFAULT NULL,
-  PRIMARY KEY (`doc_res_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38258 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+DROP TABLE IF EXISTS `lote_item`;
+CREATE TABLE `lote_item`  (
+  `lote_item_id` int NOT NULL AUTO_INCREMENT,
+  `lote_item_id_lote` int NULL DEFAULT NULL,
+  `lote_item_key` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lote_item_status` int NULL DEFAULT NULL,
+  `lote_item_log` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`lote_item_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of doc_res
+-- Records of lote_item
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for monitor
+-- ----------------------------
+DROP TABLE IF EXISTS `monitor`;
+CREATE TABLE `monitor`  (
+  `monitor_id` int NOT NULL AUTO_INCREMENT,
+  `monitor_ide_client` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_nome_arquivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_status` int NULL DEFAULT NULL,
+  PRIMARY KEY (`monitor_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of monitor
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for monitor_xml
+-- ----------------------------
+DROP TABLE IF EXISTS `monitor_xml`;
+CREATE TABLE `monitor_xml`  (
+  `monitor_xml_id` int NOT NULL AUTO_INCREMENT,
+  `monitor_xml_ide` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_id_company` int NULL DEFAULT NULL,
+  `monitor_xml_chave` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_status` int NULL DEFAULT NULL,
+  `monitor_xml_descricao` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_data_criacao` datetime NULL DEFAULT NULL,
+  `monitor_xml_data_ultima_conferencia` datetime NULL DEFAULT NULL,
+  `monitor_xml_tipo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_lixeira` int NULL DEFAULT NULL,
+  PRIMARY KEY (`monitor_xml_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of monitor_xml
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for monitor_xml_webhook
+-- ----------------------------
+DROP TABLE IF EXISTS `monitor_xml_webhook`;
+CREATE TABLE `monitor_xml_webhook`  (
+  `monitor_xml_webhook_id` int NOT NULL AUTO_INCREMENT,
+  `monitor_xml_webhook_id_company` int NULL DEFAULT NULL,
+  `monitor_xml_webhook_ide` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_webhook_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `monitor_xml_webhook_lixeira` int NULL DEFAULT NULL,
+  PRIMARY KEY (`monitor_xml_webhook_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of monitor_xml_webhook
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for nfe
+-- ----------------------------
+DROP TABLE IF EXISTS `nfe`;
+CREATE TABLE `nfe`  (
+  `nfe_id` int NOT NULL AUTO_INCREMENT,
+  `nfe_id_company` int NULL DEFAULT NULL,
+  `nfe_status` int NULL DEFAULT NULL,
+  `nfe_ide_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_natureza_operacao` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_serie` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_numero` int NULL DEFAULT NULL,
+  `nfe_data_emissao` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_data_entrada_saida` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_tipo_operacao` int NULL DEFAULT NULL,
+  `nfe_finalidade_emissao` int NULL DEFAULT NULL,
+  `nfe_consumidor_final` int NULL DEFAULT NULL,
+  `nfe_presenca_comprador` int NULL DEFAULT NULL,
+  `nfe_destinatario_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_cpf` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_id_estrangeiro` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_nome` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_indicador_inscricao_estadual` int NULL DEFAULT NULL,
+  `nfe_destinatario_inscricao_estadual` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_inscricao_suframa` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_inscricao_municipal` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_logradouro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_numero` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_complemento` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_bairro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_codigo_municipio` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_nome_municipio` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_cep` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_codigo_pais` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_nome_pais` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_destinatario_endereco_telefone` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_informe` int NULL DEFAULT NULL,
+  `nfe_local_retirada_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_cpf` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_nome` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_inscricao_estadual` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_logradouro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_numero` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_complemento` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_bairro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_codigo_municipio` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_nome_municipio` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_cep` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_codigo_pais` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_nome_pais` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_retirada_endereco_telefone` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_informe` int NULL DEFAULT NULL,
+  `nfe_local_entrega_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_cpf` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_nome` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_inscricao_estadual` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_logradouro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_numero` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_complemento` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_bairro` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_codigo_municipio` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_nome_municipio` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_cep` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_codigo_pais` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_nome_pais` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_local_entrega_endereco_telefone` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_informe` int NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_tipo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nfe_chave` varchar(44) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_cte_chave` varchar(44) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_anomes` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_modelo` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_serie` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_nf_numero` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_anomes` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_cpf` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_inscricao_estadual` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_modelo` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_serie` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_produtor_numero` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_cupom_modelo` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_cupom_numero_sequencial` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_notas_referenciadas_cupom_coo` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_intermediario_informe` int NULL DEFAULT NULL,
+  `nfe_intermediario_indicador` int NULL DEFAULT NULL,
+  `nfe_intermediario_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_intermediario_identificacao` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_modalidade_frete` int NULL DEFAULT NULL,
+  `nfe_frete_transportador_cnpj` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_cpf` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_nome` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_inscricao_estadual` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_endereco` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_nome_municipio` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_transportador_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_retencao_informe` int NULL DEFAULT NULL,
+  `nfe_frete_retencao_valor_servico` double(15, 2) NULL DEFAULT NULL,
+  `nfe_frete_retencao_valor_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_frete_retencao_valor_aliquota` double(15, 2) NULL DEFAULT NULL,
+  `nfe_frete_retencao_valor` double(15, 2) NULL DEFAULT NULL,
+  `nfe_frete_retencao_cfop` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_retencao_codigo_municipio` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_veiculo_placa` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_veiculo_uf` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_veiculo_rntc` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_identificacao_vagao` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_identificacao_balsa` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_volumes_quantidade` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_volumes_especie` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_volumes_marca` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_volumes_numero` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_frete_volumes_peso_liquido` double(15, 3) NULL DEFAULT NULL,
+  `nfe_frete_volumes_peso_bruto` double(15, 3) NULL DEFAULT NULL,
+  `nfe_frete_volumes_numero_lacre` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_cobranca_fatura_numero` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_cobranca_fatura_valor_original` double(15, 2) NULL DEFAULT NULL,
+  `nfe_cobranca_fatura_valor_desconto` double(15, 2) NULL DEFAULT NULL,
+  `nfe_cobranca_fatura_valor_liquido` double(15, 2) NULL DEFAULT NULL,
+  `nfe_pagamento_valor_troco` double(15, 2) NULL DEFAULT NULL,
+  `nfe_informacoes_adicionais_fisco` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `nfe_informacoes_adicionais_contribuinte` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `nfe_informacoes_adicionais_compra_informe` int NULL DEFAULT NULL,
+  `nfe_informacoes_adicionais_compra_nota_empenho` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_informacoes_adicionais_compra_pedido` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_informacoes_adicionais_compra_contrato` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_exportacao_informe` int NULL DEFAULT NULL,
+  `nfe_exportacao_uf_local_embarque` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_exportacao_local_embarque` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_exportacao_local_despacho` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_processo_numero_processo` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_processo_identificador_origem_processo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_contingencia_informe` int NULL DEFAULT NULL,
+  `nfe_contingencia_data` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_contingencia_motivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nfe_totais_icms_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_valor_total_desonerado` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_fcp_valor_total_uf_dest` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_valor_total_uf_dest` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_valor_total_uf_rem` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_fcp_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_st_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_st_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_fcp_st_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_fcp_st_valor_total_retido` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_monofasico_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_monofasico_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_monofasico_retencao_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_
+icms_monofasico_retencao_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_monofasico_retido_base_calculo` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_icms_monofasico_retido_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_valor_produtos_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_valor_frete_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_valor_seguro_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_valor_desconto_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_ii_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_ipi_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_ipi_valor_devolvido_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_pis_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_cofins_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_outras_despesas_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_tributos_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_informe` int NULL DEFAULT NULL,
+  `nfe_totais_issqn_servicos_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_base_calculo_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_iss_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_pis_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_cofins_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_data_prestacao_servico` date NULL DEFAULT NULL,
+  `nfe_totais_issqn_deducao_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_outros_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_desconto_incondicionado_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_desconto_condicionado_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_iss_retido_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_issqn_regime_especial_tributacao` int NULL DEFAULT NULL,
+  `nfe_totais_retencoes_informe` int NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_pis_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_cofins_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_csll_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_base_calculo_irrf_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_irrf_valor_total` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_base_calculo_previdencia_valor_tot` double(15, 2) NULL DEFAULT NULL,
+  `nfe_totais_retencoes_tributos_previdencia_valor_total` double(15, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`nfe_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nfe
 -- ----------------------------
 
 
