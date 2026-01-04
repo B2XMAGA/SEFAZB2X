@@ -1,17 +1,22 @@
 <?php
 echo OPENSSL_VERSION_TEXT . PHP_EOL;
 
-echo 'deploy-002';
+echo 'deploy-003';
 
 
 
-$host = 'a8484c4s4cgoskk0g8scsk08';
+$host = 'a8484c4s4cgoskk0g8scsk08'; // nome do service
 $port = 3306;
-$db   = 'default';
-$user = 'mariadb';
-$pass = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
+
+$db   = getenv('MARIADB_DATABASE');
+$user = getenv('MARIADB_USER');
+$pass = getenv('MARIADB_PASSWORD');
+
+
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+
+echo $dsn;
 
 try {
     $pdo = new PDO($dsn, $user, $pass, [
