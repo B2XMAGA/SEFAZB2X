@@ -44,9 +44,9 @@ const VIEW_CIP = '';
 /**
  * DADOS DE ACESSO DSN
  */
-const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=default';
-const USER = 'mariadb';
-const PASS = '7j8pMMnbypXjvUPx58c9gBFCrY9bSMewrvJSyARBadSQ3pRNktfJjjJuntMmYoix';
+const DSN = 'mysql:host=a8484c4s4cgoskk0g8scsk08;port=3306;dbname=b2x_sefaz';
+const USER = 'b2x_sefaz';
+const PASS = '@Pl68267713210';
 
 /**
  * FUNÇÃO URL - Protegida contra redeclaração
