@@ -8,9 +8,9 @@ echo 'deploy-003';
 $host = 'a8484c4s4cgoskk0g8scsk08'; // nome do service
 $port = 3306;
 
-$db   = getenv('MARIADB_DATABASE');
-$user = getenv('MARIADB_USER');
-$pass = getenv('MARIADB_PASSWORD');
+$db   = 'b2x_sefaz';
+$user = 'b2x_sefaz';
+$pass = '@Pl68267713210';
 
 
 
