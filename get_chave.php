@@ -1,4 +1,5 @@
 <?php
+echo 'ok';
 $host = 'psos08wkso0wk8k808cogwsg';
 $port = 3306;
 $db   = 'default';
