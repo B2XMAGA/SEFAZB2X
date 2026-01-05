@@ -145,49 +145,71 @@ if ($resultCron) {
             }
         }
 
-        if ($rCron->dfe_schema == 'resEvento_v1.01.xsd') {
-            echo 'resumo evento';
-            $resultTypeEvent = $db->db()->from('type_event')
-                ->where('type_event_code')->is($XML->tpEvento)
-                ->limit(1)
-                ->select()
-                ->all();
+        try {
 
-            if (!$resultTypeEvent) {
-                $form_type_event['type_event_code'] = $XML->tpEvento;
-                $form_type_event['type_event_description'] = $XML->xEvento;
-                $db->db()->insert($form_type_event)->into('type_event');
-            }
+            if ($rCron->dfe_schema == 'resEvento_v1.01.xsd') {
 
+                echo 'resumo evento';
 
-            $form_evento['eventos_id_client'] = $rCron->dfe_ide_client;
-            $form_evento['eventos_chave'] = $XML->chNFe;
-            $form_evento['eventos_code_evento'] = $XML->tpEvento;
-            $form_evento['eventos_desc_evento'] = $XML->xEvento;
-            $explode_data = explode('T', $XML->dhEvento);
-            $form_evento['eventos_data'] = $explode_data['0'] . '-' . substr($explode_data['1'], 0, 8);
-            $form_evento['eventos_prot'] = $XML->nProt;
-            $form_evento['eventos_file'] = $rCron->dfe_doc;
+                $resultTypeEvent = $db->db()->from('type_event')
+                    ->where('type_event_code')->is($XML->tpEvento)
+                    ->limit(1)
+                    ->select()
+                    ->all();
 
+                if (!$resultTypeEvent) {
+                    $form_type_event = [
+                        'type_event_code' => $XML->tpEvento,
+                        'type_event_description' => $XML->xEvento
+                    ];
 
-            $resultEventOne = $db->db()->from('eventos')
-                ->where('eventos_id_client')->is($rCron->dfe_ide_client)
-                ->andWhere('eventos_prot')->is($XML->nProt)
-                ->limit(1)
-                ->select()
-                ->all();
+                    $db->db()->insert($form_type_event)->into('type_event');
+                }
 
-            try {
+                $explode_data = explode('T', $XML->dhEvento);
+
+                $form_evento = [
+                    'eventos_id_client'    => $rCron->dfe_ide_client,
+                    'eventos_chave'        => $XML->chNFe,
+                    'eventos_code_evento'  => $XML->tpEvento,
+                    'eventos_desc_evento'  => $XML->xEvento,
+                    'eventos_data'         => $explode_data[0] . '-' . substr($explode_data[1], 0, 8),
+                    'eventos_prot'         => $XML->nProt,
+                    'eventos_file'         => $rCron->dfe_doc
+                ];
+
+                $resultEventOne = $db->db()->from('eventos')
+                    ->where('eventos_id_client')->is($rCron->dfe_ide_client)
+                    ->andWhere('eventos_prot')->is($XML->nProt)
+                    ->limit(1)
+                    ->select()
+                    ->all();
+
                 if (!$resultEventOne) {
                     $db->db()->insert($form_evento)->into('eventos');
                 }
-                $form_doc['dfe_status'] = '1';
-                $db->db()->update('dfe')->where('dfe_id')->is($rCron->dfe_id)->set($form_doc);
-            } catch (\Exception $e) {
-                echo $e->getMessage();
+
+                $form_doc = [
+                    'dfe_status' => '1'
+                ];
+
+                $db->db()->update('dfe')
+                    ->where('dfe_id')->is($rCron->dfe_id)
+                    ->set($form_doc);
+
+                echo 'ok res evento';
             }
-            
-            echo 'ok res evento';
+
+        } catch (\Throwable $e) {
+
+            // Exibe erro
+            echo 'Erro ao processar resumo de evento: ' . $e->getMessage();
+
+            // Se quiser, pode salvar em log
+            // error_log($e->getMessage());
+
+            // Se quiser mais detalhes:
+            // error_log($e->getTraceAsString());
         }
 
         if ($rCron->dfe_schema == 'procEventoNFe_v1.00.xsd') {
