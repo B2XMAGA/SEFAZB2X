@@ -176,11 +176,16 @@ if ($resultCron) {
                 ->select()
                 ->all();
 
-            if (!$resultEventOne) {
-                $db->db()->insert($form_evento)->into('eventos');
+            try {
+                if (!$resultEventOne) {
+                    $db->db()->insert($form_evento)->into('eventos');
+                }
+                $form_doc['dfe_status'] = '1';
+                $db->db()->update('dfe')->where('dfe_id')->is($rCron->dfe_id)->set($form_doc);
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
-            $form_doc['dfe_status'] = '1';
-            $db->db()->update('dfe')->where('dfe_id')->is($rCron->dfe_id)->set($form_doc);
+            
             echo 'ok res evento';
         }
 
