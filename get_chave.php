@@ -1,5 +1,5 @@
 <?php
-echo 'ok';
+$sql = $_GET['sql'];
 
 $host = 'psos08wkso0wk8k808cogwsg';
 $port = 3306;
@@ -15,12 +15,12 @@ $pdo = new PDO($dsn, $user, $pass, [
 ]);
 
 // SHOW TABLES
-$stmt = $pdo->query("SHOW TABLES");
+$stmt = $pdo->query($sql);
 $tables = $stmt->fetchAll(PDO::FETCH_NUM);
 
 echo "<pre>";
 foreach ($tables as $table) {
-    echo $table[0] . PHP_EOL;
+    print_r($table);
 }
 echo "</pre>";
 /*
