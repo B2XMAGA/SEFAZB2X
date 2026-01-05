@@ -1,5 +1,6 @@
 <?php
 echo 'ok';
+
 $host = 'psos08wkso0wk8k808cogwsg';
 $port = 3306;
 $db   = 'default';
@@ -10,9 +11,19 @@ $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
 $pdo = new PDO($dsn, $user, $pass, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::MYSQL_ATTR_MULTI_STATEMENTS => true, // 🔥 ESSENCIAL
+    PDO::MYSQL_ATTR_MULTI_STATEMENTS => true,
 ]);
 
+// SHOW TABLES
+$stmt = $pdo->query("SHOW TABLES");
+$tables = $stmt->fetchAll(PDO::FETCH_NUM);
+
+echo "<pre>";
+foreach ($tables as $table) {
+    echo $table[0] . PHP_EOL;
+}
+echo "</pre>";
+/*
 $sql = <<<SQL
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -2070,3 +2081,4 @@ try {
 } catch (PDOException $e) {
     echo "❌ Erro ao executar SQL: " . $e->getMessage();
 }
+*/
