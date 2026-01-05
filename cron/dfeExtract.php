@@ -146,6 +146,7 @@ if ($resultCron) {
         }
 
         if ($rCron->dfe_schema == 'resEvento_v1.01.xsd') {
+            echo 'resumo evento';
             $resultTypeEvent = $db->db()->from('type_event')
                 ->where('type_event_code')->is($XML->tpEvento)
                 ->limit(1)
