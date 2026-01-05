@@ -34,6 +34,7 @@ if ($resultCron) {
 
         $XMLBase64 = base64_decode($rCron->dfe_doc);
         $XML = simplexml_load_string($XMLBase64);
+        print_r($XML);
 
 
         if ($rCron->dfe_schema == 'resNFe_v1.01.xsd') {
