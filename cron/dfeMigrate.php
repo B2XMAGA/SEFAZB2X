@@ -43,9 +43,16 @@ if ($resultCron) {
 				$createDfe['dfe_doc'] = $r->dfe_doc;
 				$createDfe['dfe_status'] = $r->dfe_status;
 				$createDfe['dfe_schema'] = $r->dfe_schema;
-				if($db->db()->insert($createDfe)->into('dfe_migrate')){
-					$db->db()->from('dfe')->where('dfe_id')->is($r->dfe_id)->delete();
+				if($createDfe['dfe_schema'] == 'cte'){
+					if($db->db()->insert($createDfe)->into('dfe_migrate')){
+						$db->db()->from('dfe')->where('dfe_id')->is($r->dfe_id)->delete();
+					}
+				}else{
+					if($db->db()->insert($createDfe)->into('dfe_migrate')){
+						$db->db()->from('dfe')->where('dfe_id')->is($r->dfe_id)->delete();
+					}
 				}
+				
 			}
 		}	
     }
